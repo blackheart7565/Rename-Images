@@ -96,6 +96,17 @@ body {
 	transition: color 0.5s ease-in-out;
 }
 
+.rename-images__btns #download-btn {
+	opacity: 0;
+	visibility: hidden;
+	transition: color 0.5s ease-in-out, visibility 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.rename-images__btns #download-btn.download-btn-active {
+	opacity: 1;
+	visibility: visible;
+}
+
 .rename-images__btns .rename-images__btn-rename::before {
 	content: "";
 	position: absolute;

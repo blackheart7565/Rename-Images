@@ -106,3 +106,12 @@ export const downloadZipImage = (images) => {
 			console.error("Error generating zip:", error);
 		});
 };
+
+export const readFileAsDataURL = (image) => {
+	return new Promise((resolve, reject) => {
+		const reader = new FileReader();
+		reader.onload = (event) => resolve(event.target.result);
+		reader.onerror = (error) => reject(error);
+		reader.readAsDataURL(image);
+	});
+};

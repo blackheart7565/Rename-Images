@@ -3,6 +3,7 @@ import {
 	displayItemImage,
 	downloadZipImage,
 	formatFileSize,
+	readFileAsDataURL,
 	renameImages,
 	setTheme
 } from "./common.js";
@@ -23,7 +24,6 @@ const renameProgress = document.getElementById("progress-rename");
 const images = [];
 let newImages = [];
 let isRename = false;
-let isLoading = false;
 
 const onDragOver = (e) => {
 	e.preventDefault();
@@ -41,38 +41,40 @@ const onDrop = (e) => {
 	displayContainer.classList.replace("hidden", "visible");
 	dragLoader.classList.add("loader-active");
 
-	if (e.dataTransfer.items) {
-		for (let i = 0; i < e.dataTransfer.items.length; i++) {
-			const element = e.dataTransfer.items[i];
-			if (element.kind === "file") {
-				const image = element.getAsFile();
-				if (image.type.match("image.*")) {
-					const creationDate = new Date(image.lastModified);
-					images.push({ image, creationDate });
-				}
-			}
+	const dataTransfer = e.dataTransfer.items;
+
+	if (dataTransfer) {
+		for (let i = 0; i < dataTransfer.length; i++) {
+			const element = dataTransfer[i];
+			console.log(element);
+			if (element.kind !== "file") return;
+
+			if (!element.type.match("image.*")) {
+				console.log("not image");
+				return;
+			};
+
+			const image = element.getAsFile();
+			const creationDate = new Date(image.lastModified);
+			images.push({ image, creationDate });
 		}
 
 		images.sort((a, b) => a.creationDate.getTime() - b.creationDate.getTime());
 
-		setTimeout(() => {
+		setTimeout(async () => {
 			countListImages.textContent = `Количество: ${images.length}`;
 
-			images.forEach(({ image }) => {
-				const reader = new FileReader();
-				reader.addEventListener("load", (e) => {
-					const src = e.target.result;
-					const { name, size } = image;
+			for (const { image } of images) {
+				const src = await readFileAsDataURL(image);
+				const { name, size } = image;
 
-					const nameImg = name.split(".")[0];
-					const sizeImg = formatFileSize(size);
-					const format = name.split(".")[1];
+				const nameImg = name.split(".")[0];
+				const sizeImg = formatFileSize(size);
+				const format = name.split(".")[1];
 
-					const li = displayItemImage(src, nameImg, sizeImg, format);
-					displayListImages.appendChild(li);
-				});
-				reader.readAsDataURL(image);
-			});
+				const li = displayItemImage(src, nameImg, sizeImg, format);
+				displayListImages.appendChild(li);
+			}
 
 			dragLoader.classList.remove("loader-active");
 		}, 1500);
@@ -94,29 +96,26 @@ themeBtn.addEventListener("click", setTheme);
 renameBtn.addEventListener("click", (e) => {
 	renameProgress.classList.add("progress-active");
 
-	setTimeout(() => {
+	setTimeout(async () => {
 		newImages = renameImages(images);
 
 		if (newImages && !isRename && newImages.length > 0) {
 			countNewListImages.textContent = `Количество: ${newImages.length}`;
 
-			for (let i = 0; i < newImages.length; i++) {
-				const reader = new FileReader();
-				reader.addEventListener("load", (e) => {
-					const src = e.target.result;
-					const { name, size } = newImages[i];
+			for (const image of newImages) {
+				const src = await readFileAsDataURL(image);
+				const { name, size } = image;
 
-					const nameImg = name.split(".")[0];
-					const sizeImg = formatFileSize(size);
-					const format = name.split(".")[1];
+				const nameImg = name.split(".")[0];
+				const sizeImg = formatFileSize(size);
+				const format = name.split(".")[1];
 
-					const li = displayItemImage(src, nameImg, sizeImg, format);
-					displayNewListImages.appendChild(li);
-				});
-				reader.readAsDataURL(newImages[i]);
+				const li = displayItemImage(src, nameImg, sizeImg, format);
+				displayNewListImages.appendChild(li);
 			}
 			isRename = true;
 			renameProgress.classList.remove("progress-active");
+			downloadBtn.classList.add("download-btn-active");
 		}
 	}, 1500);
 });
