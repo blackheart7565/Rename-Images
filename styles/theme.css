@@ -4,7 +4,7 @@
 	--list-image-item-color: #111;
 	--drag-images-color: #222;
 	--title-color: #000;
-	--btn-rename-color: #000;
+	--btn-rename-color: #191f3a;
 	---btn-rename-hover-color: #FFF;
 	--select-color: #000;
 	--select-list-item-selected-color: #FFF;
@@ -75,7 +75,7 @@
 	border: none;
 	outline: none;
 	padding: 10px;
-	transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out;
+	transition: box-shadow 0.3s ease-in-out, background-color 0.5s ease-in-out;
 }
 
 .theme-btn[data-theme="dark"] {
@@ -83,9 +83,17 @@
 	box-shadow: inset 0px 0px 7px var(--theme-btn-shadow-color);
 }
 
+.theme-btn[data-theme="dark"]:hover {
+	box-shadow: inset 0px 0px 15px var(--theme-btn-shadow-color);
+}
+
 .theme-btn[data-theme="light"] {
 	background-color: var(--theme-btn-bg-color);
 	box-shadow: inset 0px 0px 7px var(--theme-btn-shadow-color);
+}
+
+.theme-btn[data-theme="light"]:hover {
+	box-shadow: inset 0px 0px 15px var(--theme-btn-shadow-color);
 }
 
 .theme-btn[data-theme="dark"] #moon {
