@@ -1,0 +1,307 @@
+/*  */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+html,
+body,
+.rename-images,
+.rename-images__wrapper,
+.rename-images__inner,
+.rename-images__drab-images,
+.rename-images__container,
+.rename-images__display-images,
+.rename-images__display-images-list,
+.rename-images__display-images-container,
+.wrapper {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	min-width: 320px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 400;
+	font-style: 14px;
+	background-color: var(--main-bg-color);
+	transition: all 0.3s ease-in-out;
+}
+
+.wrapper {
+	max-width: 1440px;
+	margin: 0 auto;
+	padding: 0 20px 20px 20px;
+	height: 100vh;
+	position: relative;
+}
+
+.rename-images__wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	box-shadow: 2px 3px 10px #000;
+	padding: 20px;
+}
+
+.rename-images__inner {
+	flex: 1 1 0;
+	overflow: hidden;
+}
+
+.rename-images {
+	display: flex;
+	flex-direction: column;
+}
+
+.rename-images__title {
+	font-size: 2.5rem;
+	text-align: center;
+	padding: 1rem;
+	color: var(--title-color);
+}
+
+
+.rename-images__btns {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.rename-images__btns .rename-images__btn-rename {
+	cursor: pointer;
+	padding: 10px 20px;
+	outline: none;
+	font-weight: 700;
+	font-size: 15px;
+	text-transform: uppercase;
+	background-color: transparent;
+	border: 2px solid var(--btn-rename-border-color);
+	color: var(--btn-rename-color);
+	position: relative;
+	overflow: hidden;
+	z-index: 10;
+	transition: color 0.5s ease-in-out;
+}
+
+.rename-images__btns .rename-images__btn-rename::before {
+	content: "";
+	position: absolute;
+	top: calc(100% + 10px);
+	left: -50px;
+	transform: scale(0);
+	width: calc(100% + 100px);
+	height: 100px;
+	border-radius: 100%;
+	background-color: var(--btn-rename-color);
+	transition: top 0.5s ease-in-out, transform 0.6s ease-in-out;
+	z-index: -1;
+}
+
+.rename-images__btns .rename-images__btn-rename:hover {
+	color: var(---btn-rename-hover-color);
+}
+
+.rename-images__btns .rename-images__btn-rename:hover::before {
+	top: -50%;
+	transform: scale(1);
+}
+
+.rename-images__drab-images {
+	justify-content: center;
+	align-items: center;
+	border: 0.2rem dashed var(--dashed-drag-images-border-color);
+	color: var(--drag-images-color);
+	font-size: 25px;
+	font-weight: 500;
+	position: relative;
+}
+
+
+.rename-images__drab-images .drag {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	visibility: hidden;
+	background: #0000002c;
+	backdrop-filter: blur(1px);
+	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
+.rename-images__drab-images .drag.drag-visible {
+	opacity: 1;
+	visibility: visible;
+}
+
+.rename-images__container {
+	align-items: center;
+}
+
+.rename-images__count {
+	display: flex;
+	justify-content: space-around;
+}
+
+.rename-images__container>#progress-rename {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 150px;
+	height: 30px;
+	margin: 0 10px;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
+.rename-images__container>#progress-rename.progress-active {
+	opacity: 1;
+	visibility: visible;
+}
+
+.rename-images__container>#progress-rename i {
+	width: 7px;
+	height: 100%;
+	background-color: var(--loader-i-bg-color);
+	scale: 0;
+	animation: animTextRainbow 1s ease-in-out infinite;
+}
+
+@keyframes animTextRainbow {
+	0% {
+		filter: hue-rotate(0deg);
+		scale: 0;
+	}
+
+	50% {
+		filter: hue-rotate(360deg);
+		scale: 1;
+	}
+
+	100% {
+		filter: hue-rotate(0deg);
+		scale: 0;
+	}
+}
+
+.rename-images__display-images {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.rename-images__display-images-count {
+	color: var(--count-color);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-wrap: nowrap;
+	flex-shrink: 0;
+	width: 100%;
+	text-align: center;
+}
+
+.rename-images__display-images-container {
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding-right: 20px;
+	position: relative;
+}
+
+.rename-images__display-images-container::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+.rename-images__display-images-container::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: var(--scrollbar-track-bg-color);
+}
+
+.rename-images__display-images-container::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: var(--scrollbar-thumb-bg-color);
+	background: -webkit-linear-gradient(to bottom, var(--scrollbar-thumb-gradient-color));
+	background: -moz-linear-gradient(to bottom, var(--scrollbar-thumb-gradient-color));
+	background: -o-linear-gradient(to bottom, var(--scrollbar-thumb-gradient-color));
+	background: linear-gradient(to bottom, var(--scrollbar-thumb-gradient-color));
+}
+
+
+.rename-images__display-images-list {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.rename-images__display-images-item {
+	display: flex;
+	gap: 25px;
+	align-items: center;
+}
+
+.rename-images__display-images-content {
+	flex-grow: 1;
+	font-weight: 700;
+}
+
+.rename-images__display-images-name,
+.rename-images__display-images-memory {
+	margin-bottom: 15px;
+}
+
+.rename-images__display-images-name,
+.rename-images__display-images-memory,
+.rename-images__display-images-format {
+	font-size: 15px;
+	color: var(--list-image-item-color);
+}
+
+.rename-images__display-images-name {}
+
+.rename-images__display-images-memory {}
+
+.rename-images__display-images-format {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.rename-images__display-images .rename-images__display-image {
+	width: 100px;
+	height: 100px;
+	border-radius: 10px;
+	box-shadow: 5px 2px 10px var(--list-item-shadow-color);
+	user-select: none;
+	pointer-events: none;
+	flex-shrink: 0;
+}
+
+.rename-images__display-images .rename-images__display-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 10px;
+}
+
+.visible {
+	display: flex;
+}
+
+.hidden {
+	display: none;
+}
