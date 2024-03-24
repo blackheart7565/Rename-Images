@@ -16,6 +16,16 @@ ol {
 	list-style: none;
 }
 
+button,
+a {
+	cursor: pointer;
+}
+
+button {
+	border: none;
+	outline: none;
+}
+
 html,
 body,
 .rename-images,
@@ -308,6 +318,12 @@ body {
 	object-fit: cover;
 	border-radius: 10px;
 }
+
+.rename-images__btn-settings {
+	/* max-width: 400px;
+	width: 100%; */
+}
+
 
 .visible {
 	display: flex;

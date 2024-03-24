@@ -6,6 +6,8 @@
 	--title-color: #000;
 	--btn-rename-color: #000;
 	---btn-rename-hover-color: #FFF;
+	--select-color: #000;
+	--select-list-item-selected-color: #FFF;
 
 	/* Background Color */
 	--main-bg-color: #FFF;
@@ -14,6 +16,8 @@
 	--scrollbar-track-bg-color: #d6d6d6;
 	--scrollbar-thumb-bg-color: #9c9c9c;
 	--scrollbar-thumb-gradient-color: #9c9c9c, #b0b1b4, #9c9c9c;
+	--select-bg-color: #FFF;
+	--select-list-item-selected-bg-color: #191f3a;
 
 	/* Border */
 	--dashed-drag-images-border-color: #888;
@@ -22,6 +26,9 @@
 	/* Box Shadow */
 	--theme-btn-shadow-color: #000;
 	--list-item-shadow-color: #00000060;
+
+	/* Stroke */
+	--settings-icon-stroke-color: #000;
 }
 
 [data-theme="dark"] {
@@ -31,6 +38,8 @@
 	--title-color: #FFF;
 	--btn-rename-color: #FFF;
 	---btn-rename-hover-color: #333;
+	--select-color: #FFF;
+	--select-list-item-selected-color: #FFF;
 
 	/* Background Color */
 	--main-bg-color: #333;
@@ -39,6 +48,8 @@
 	--scrollbar-track-bg-color: #505050;
 	--scrollbar-thumb-bg-color: #161718;
 	--scrollbar-thumb-gradient-color: #0a0b0c, #717275, #0a0b0c;
+	--select-bg-color: #333;
+	--select-list-item-selected-bg-color: #191f3a;
 
 	/* Border */
 	--dashed-drag-images-border-color: #888;
@@ -47,6 +58,9 @@
 	/* Box Shadow */
 	--theme-btn-shadow-color: #000;
 	--list-item-shadow-color: #00000060;
+
+	/* Stroke */
+	--settings-icon-stroke-color: #FFF;
 }
 
 

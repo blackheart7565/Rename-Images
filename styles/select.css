@@ -1,0 +1,110 @@
+.select {
+	width: 100%;
+	position: relative;
+	z-index: 100;
+}
+
+.select.open .select__dropdown {
+	display: block;
+}
+
+.select.open .select__input {
+	/* border-bottom: none; */
+}
+
+.select.open .select__backdrop {
+	display: block;
+}
+
+.select__input {
+	cursor: pointer;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	height: 46px;
+	display: flex;
+	width: -moz-max-content;
+	width: max-content;
+	align-items: center;
+	padding: 0 1rem;
+	font-weight: 700;
+	letter-spacing: 1px;
+	box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
+	background-color: var(--select-bg-color);
+	color: var(--select-color);
+}
+
+.select__dropdown {
+	display: none;
+	max-height: 200px;
+	min-width: 300px;
+	max-width: 400px;
+	width: 100%;
+	position: absolute;
+	z-index: 101;
+	bottom: calc(100% + 20px);
+	left: 50%;
+	right: 0;
+	transform: translateX(-50%);
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	overflow-y: auto;
+	box-shadow: 4px 4px 10px rgba(20, 20, 20, 0.7);
+	font-weight: 700;
+	letter-spacing: 1px;
+	background-color: var(--select-bg-color);
+	color: var(--select-color);
+}
+
+
+.select__dropdown::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+.select__dropdown::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: var(--scrollbar-track-bg-color);
+}
+
+.select__dropdown::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: var(--scrollbar-thumb-bg-color);
+	background: -webkit-linear-gradient(to bottom, var(--scrollbar-thumb-gradient-color));
+	background: -moz-linear-gradient(to bottom, var(--scrollbar-thumb-gradient-color));
+	background: -o-linear-gradient(to bottom, var(--scrollbar-thumb-gradient-color));
+	background: linear-gradient(to bottom, var(--scrollbar-thumb-gradient-color));
+}
+
+
+.select__list {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.select__item {
+	padding: 1rem;
+	border-bottom: 1px solid #ccc;
+}
+
+.select__item.selected {
+	background-color: var(--select-list-item-selected-bg-color);
+	color: var(--select-list-item-selected-color);
+}
+
+.select__item:hover {
+	background-color: #cacaca;
+	cursor: pointer;
+	transition: background-color 0.2s linear;
+}
+
+.select__backdrop {
+	position: fixed;
+	display: none;
+	z-index: -1;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background: transparent;
+}
