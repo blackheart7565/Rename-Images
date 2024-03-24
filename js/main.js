@@ -44,7 +44,6 @@ const onDrop = (e) => {
 	if (e.dataTransfer.items) {
 		for (let i = 0; i < e.dataTransfer.items.length; i++) {
 			const element = e.dataTransfer.items[i];
-			console.log(`image`, element);
 			if (element.kind === "file") {
 				const image = element.getAsFile();
 				if (image.type.match("image.*")) {
@@ -54,7 +53,7 @@ const onDrop = (e) => {
 			}
 		}
 
-		images.sort((a, b) => a.creationDate - b.creationDate);
+		images.sort((a, b) => a.creationDate.getTime() - b.creationDate.getTime());
 
 		setTimeout(() => {
 			countListImages.textContent = `Количество: ${images.length}`;
