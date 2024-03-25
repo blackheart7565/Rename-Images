@@ -79,8 +79,8 @@ class Select {
 		// 	this.toggle();
 		// } else 
 		if (type === "item") {
-			const id = event.target.dataset.id;
-			this.select(id);
+			// const id = event.target.dataset.id;
+			// this.select(id);
 		} else if (type === "backdrop") {
 			this.close();
 		}
@@ -137,17 +137,18 @@ window.s = new Select("#select", {
 				stroke-width="32" />
 		</svg>
 	`,
-	selectedId: '1',
+	// selectedId: '1',
 	data: [
-		{ id: '1', value: 'React' },
-		{ id: '2', value: 'Angular' },
-		{ id: '3', value: 'Vue' },
-		{ id: '4', value: 'React Native' },
-		{ id: '5', value: 'Next' },
-		{ id: '6', value: 'Nest' }
+		{
+			id: '1', value: `
+				<label>
+					<input type="checkbox" id="is-enter-start-count" />
+					своё значение
+				</label>
+		` },
 	],
-	onSelect(item) {
-		console.log('Selected Item', item);
-	}
+	// onSelect(item) {
+	// 	console.log('Selected Item', item);
+	// }
 });
 

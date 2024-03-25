@@ -42,9 +42,10 @@
 	position: absolute;
 	z-index: 101;
 	bottom: calc(100% + 10px);
-	left: 50%;
+	/* left: 50%; */
+	left: 0;
 	right: 0;
-	transform: translateX(-50%);
+	/* transform: translateX(-50%); */
 	border: 1px solid #ccc;
 	border-radius: 8px;
 	overflow-y: auto;
@@ -58,11 +59,11 @@
 
 @keyframes dropdownAnim {
 	0% {
-		transform: translateX(-50%) translateY(-100px) scale(0);
+		transform: translateY(-100px) scale(0);
 	}
 
 	100% {
-		transform: translateX(-50%) translateY(0px) scale(1);
+		transform: translateY(0px) scale(1);
 	}
 }
 
@@ -104,8 +105,8 @@
 }
 
 .select__item:hover {
-	background-color: #cacaca;
-	cursor: pointer;
+	/* background-color: #4b4b4b; */
+	/* cursor: pointer; */
 	transition: background-color 0.2s linear;
 }
 

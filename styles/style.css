@@ -90,6 +90,12 @@ body {
 	justify-content: space-between;
 }
 
+.rename-images__btns-container {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
 .rename-images__btns .rename-images__btn-rename {
 	cursor: pointer;
 	padding: 10px 20px;
@@ -350,6 +356,35 @@ body {
 .rename-images__btn-settings .select .select__input span svg {
 	width: 100%;
 	height: 100%;
+}
+
+/* Enter start count input */
+
+.rename-images__label-start-count {}
+
+.rename-images__label-start-count .rename-images__input-start-count {
+	visibility: hidden;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: none;
+	outline: none;
+	padding: 15px 10px 15px 20px;
+	font-size: 16px;
+	width: 250px;
+	color: var(--input-start-count-color);
+	background-color: transparent;
+	border-bottom: 2px solid var(--input-start-count-border-bottom-color);
+	box-shadow: 0px 1px 5px var(--input-start-count-shadow-color);
+}
+
+.rename-images__label-start-count .rename-images__input-start-count::placeholder {
+	color: var(--input-start-count-color);
+	opacity: 0.8;
+}
+
+.rename-images__label-start-count .rename-images__input-start-count.open {
+	visibility: visible;
 }
 
 .visible {

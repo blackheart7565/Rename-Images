@@ -8,6 +8,7 @@
 	---btn-rename-hover-color: #FFF;
 	--select-color: #000;
 	--select-list-item-selected-color: #FFF;
+	--input-start-count-color: #000;
 
 	/* Background Color */
 	--main-bg-color: #FFF;
@@ -22,10 +23,12 @@
 	/* Border */
 	--dashed-drag-images-border-color: #888;
 	--btn-rename-border-color: #555;
+	--input-start-count-border-bottom-color: #000;
 
 	/* Box Shadow */
 	--theme-btn-shadow-color: #000;
 	--list-item-shadow-color: #00000060;
+	--input-start-count-shadow-color: #000;
 
 	/* Stroke */
 	--settings-icon-stroke-color: #000;
@@ -40,6 +43,7 @@
 	---btn-rename-hover-color: #333;
 	--select-color: #FFF;
 	--select-list-item-selected-color: #FFF;
+	--input-start-count-color: #FFF;
 
 	/* Background Color */
 	--main-bg-color: #333;
@@ -54,10 +58,12 @@
 	/* Border */
 	--dashed-drag-images-border-color: #888;
 	--btn-rename-border-color: #FFF;
+	--input-start-count-border-bottom-color: #FFF;
 
 	/* Box Shadow */
 	--theme-btn-shadow-color: #000;
 	--list-item-shadow-color: #00000060;
+	--input-start-count-shadow-color: #000;
 
 	/* Stroke */
 	--settings-icon-stroke-color: #FFF;

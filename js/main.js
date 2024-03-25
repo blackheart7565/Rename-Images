@@ -21,6 +21,9 @@ const downloadBtn = document.getElementById("download-btn");
 const dragLoader = document.getElementById("drag-loader");
 const renameProgress = document.getElementById("progress-rename");
 
+const enterStartCount = document.getElementById("enter-start-count");
+const isEnterStartCount = document.getElementById("is-enter-start-count");
+
 const images = [];
 let newImages = [];
 let isRename = false;
@@ -96,8 +99,10 @@ themeBtn.addEventListener("click", setTheme);
 renameBtn.addEventListener("click", (e) => {
 	renameProgress.classList.add("progress-active");
 
+
 	setTimeout(async () => {
-		newImages = renameImages(images);
+		const newNameImage = enterStartCount.value;
+		newImages = renameImages(images, newNameImage);
 
 		if (newImages && !isRename && newImages.length > 0) {
 			countNewListImages.textContent = `Количество: ${newImages.length}`;
@@ -121,4 +126,12 @@ renameBtn.addEventListener("click", (e) => {
 });
 downloadBtn.addEventListener("click", () => {
 	downloadZipImage(newImages);
+});
+
+isEnterStartCount.addEventListener("change", (e) => {
+	if (isEnterStartCount.checked) {
+		enterStartCount.classList.add("open");
+	} else {
+		enterStartCount.classList.remove("open");
+	}
 });

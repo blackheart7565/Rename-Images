@@ -72,8 +72,21 @@ export const setTheme = (e) => {
 
 export const renameImages = (images, newNameImage) => {
 	const newImages = [];
+	let newName = "";
+
 	images.forEach(({ image }, index) => {
-		const newFile = new File([image], `${index + 1}.${image.name.split(".").pop()}`, { type: image.type });
+
+		if (newNameImage) {
+			if (!isNaN(newNameImage)) {
+				newName = parseInt(newNameImage) + index;
+			} else {
+				newName = newNameImage + "_" + (index + 1);
+			}
+		} else {
+			newName = index + 1;
+		}
+
+		const newFile = new File([image], `${newName}.${image.name.split(".").pop()}`, { type: image.type });
 		Object.defineProperty(newFile, 'lastModified', {
 			value: image.lastModified,
 			writable: false,
