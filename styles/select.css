@@ -41,7 +41,7 @@
 	width: 100%;
 	position: absolute;
 	z-index: 101;
-	bottom: calc(100% + 20px);
+	bottom: calc(100% + 10px);
 	left: 50%;
 	right: 0;
 	transform: translateX(-50%);
@@ -53,6 +53,17 @@
 	letter-spacing: 1px;
 	background-color: var(--select-bg-color);
 	color: var(--select-color);
+	animation: dropdownAnim 0.3s ease-in-out;
+}
+
+@keyframes dropdownAnim {
+	0% {
+		transform: translateX(-50%) translateY(-100px) scale(0);
+	}
+
+	100% {
+		transform: translateX(-50%) translateY(0px) scale(1);
+	}
 }
 
 
