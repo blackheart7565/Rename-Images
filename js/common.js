@@ -128,3 +128,63 @@ export const readFileAsDataURL = (image) => {
 		reader.readAsDataURL(image);
 	});
 };
+
+export const convertToJPG = (image) => {
+	return new Promise((resolve, reject) => {
+		if (!window.FileReader) {
+			console.error("FileReader не поддерживается");
+			reject("FileReader не поддерживается");
+			return;
+		}
+
+		const nameImage = image.name.split(".")[0];
+
+		const reader = new FileReader();
+
+		reader.addEventListener("load", (event) => {
+			const imageUrl = event.target.result;
+			const mimeType = "image/jpeg";
+			const image = new Image();
+			image.src = imageUrl;
+
+			const canvas = document.createElement("canvas");
+			const ctx = canvas.getContext("2d");
+
+			image.onload = function () {
+				canvas.width = image.width;
+				canvas.height = image.height;
+				ctx.drawImage(image, 0, 0);
+
+				// canvas.toBlob((blob) => {
+				// 	const jpgImage = new File([blob], "image.jpg", {
+				// 		type: "image/jpeg"
+				// 	});
+				// 	resolve(jpgImage);
+				// }, "image/jpeg", 1.0);
+				const jpgImage = canvas.toDataURL(mimeType);
+
+
+				// Декодируем строку Base64 в массив байтов
+				const byteCharacters = atob(jpgImage.split(',')[1]);
+				const byteNumbers = new Array(byteCharacters.length);
+				for (let i = 0; i < byteCharacters.length; i++) {
+					byteNumbers[i] = byteCharacters.charCodeAt(i);
+				}
+				const byteArray = new Uint8Array(byteNumbers);
+				const blob = new Blob([byteArray], { type: mimeType });
+				const file = new File([blob], `${nameImage}.jpg`, { type: mimeType });
+
+				resolve(file);
+			};
+
+			image.onerror = reject;
+		});
+
+		reader.onerror = reject;
+		reader.readAsDataURL(image);
+	});
+};
+
+export const getExtensionFile = (value) => {
+	return value.split(".").pop();
+};

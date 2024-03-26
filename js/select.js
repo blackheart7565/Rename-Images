@@ -143,7 +143,14 @@ window.s = new Select("#select", {
 			id: '1', value: `
 				<label>
 					<input type="checkbox" id="is-enter-start-count" />
-					своё значение
+					<span>своё значение</span>
+				</label>
+		` },
+		{
+			id: '2', value: `
+				<label>
+					<input type="checkbox" id="is-enter-covert-img" />
+					<span>Конвертировать в jpg формат?</span>
 				</label>
 		` },
 	],

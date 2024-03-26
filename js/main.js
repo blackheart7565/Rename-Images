@@ -1,8 +1,10 @@
 'use strict';
 import {
+	convertToJPG,
 	displayItemImage,
 	downloadZipImage,
 	formatFileSize,
+	getExtensionFile,
 	readFileAsDataURL,
 	renameImages,
 	setTheme
@@ -23,10 +25,12 @@ const renameProgress = document.getElementById("progress-rename");
 
 const enterStartCount = document.getElementById("enter-start-count");
 const isEnterStartCount = document.getElementById("is-enter-start-count");
+const isEnterCovertImg = document.getElementById("is-enter-covert-img");
 
-const images = [];
+let images = [];
 let newImages = [];
 let isRename = false;
+let isConvert = false;
 
 const onDragOver = (e) => {
 	e.preventDefault();
@@ -49,7 +53,6 @@ const onDrop = (e) => {
 	if (dataTransfer) {
 		for (let i = 0; i < dataTransfer.length; i++) {
 			const element = dataTransfer[i];
-			console.log(element);
 			if (element.kind !== "file") return;
 
 			if (!element.type.match("image.*")) {
@@ -96,12 +99,33 @@ dragImages.addEventListener("drop", onDrop);
 dragImages.addEventListener("drag", onDrag);
 
 themeBtn.addEventListener("click", setTheme);
-renameBtn.addEventListener("click", (e) => {
+renameBtn.addEventListener("click", async (e) => {
 	renameProgress.classList.add("progress-active");
-
 
 	setTimeout(async () => {
 		const newNameImage = enterStartCount.value;
+
+		if (isConvert) {
+			let convertImages = [];
+
+			for (const { image, creationDate } of images) {
+				if (getExtensionFile(image.name) === "jpg") {
+					console.log(getExtensionFile(image.name));
+					convertImages.push({
+						creationDate,
+						image
+					});
+				} else {
+					const img = await convertToJPG(image);
+					convertImages.push({
+						creationDate,
+						image: img
+					});
+				}
+			}
+			images = convertImages;
+		}
+
 		newImages = renameImages(images, newNameImage);
 
 		if (newImages && !isRename && newImages.length > 0) {
@@ -133,5 +157,13 @@ isEnterStartCount.addEventListener("change", (e) => {
 		enterStartCount.classList.add("open");
 	} else {
 		enterStartCount.classList.remove("open");
+	}
+});
+
+isEnterCovertImg.addEventListener("change", (e) => {
+	if (isEnterCovertImg.checked) {
+		isConvert = true;
+	} else {
+		isConvert = false;
 	}
 });
