@@ -100,6 +100,9 @@ dragImages.addEventListener("drag", onDrag);
 
 themeBtn.addEventListener("click", setTheme);
 renameBtn.addEventListener("click", async (e) => {
+
+	if (images.length <= 0) return;
+
 	renameProgress.classList.add("progress-active");
 
 	setTimeout(async () => {

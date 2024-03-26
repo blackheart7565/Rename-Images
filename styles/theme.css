@@ -29,6 +29,10 @@
 	--theme-btn-shadow-color: #000;
 	--list-item-shadow-color: #00000060;
 	--input-start-count-shadow-color: #000;
+	--loader-shadow-color-primary: #000000;
+	--loader-shadow-color-secondary: rgba(0, 0, 0, 0.7);
+	--loader-shadow-color-tertiary: rgba(0, 0, 0, 0.5);
+	--loader-shadow-color-quaternary: rgba(0, 0, 0, 0.2);
 
 	/* Stroke */
 	--settings-icon-stroke-color: #000;
@@ -64,6 +68,10 @@
 	--theme-btn-shadow-color: #000;
 	--list-item-shadow-color: #00000060;
 	--input-start-count-shadow-color: #000;
+	--loader-shadow-color-primary: #ffffff;
+	--loader-shadow-color-secondary: rgba(255, 255, 255, 0.7);
+	--loader-shadow-color-tertiary: rgba(255, 255, 255, 0.5);
+	--loader-shadow-color-quaternary: rgba(255, 255, 255, 0.2);
 
 	/* Stroke */
 	--settings-icon-stroke-color: #FFF;
